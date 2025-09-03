@@ -17,7 +17,7 @@ name_on_order = st.text_input("Name of Smoothie:")
 st.write("The name of your Smoothie will be:", name_on_order)
 
 # Snowflake session
-session = get_active_session()
+session = cnx.session()
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
 
 # Convert to Python list for multiselect
@@ -50,3 +50,4 @@ if ingredients_list:
         # Debug SQL (optional)
         # st.write(my_insert_stmt)
     st.stop() 
+
