@@ -48,4 +48,4 @@ if ingredients_list:
         st.success(f"Your Smoothie is ordered! 🥤 Name: {name_on_order}", icon="✅")
         # Debug SQL (optional)
         # st.write(my_insert_stmt)
-    st.stop() 
+   
