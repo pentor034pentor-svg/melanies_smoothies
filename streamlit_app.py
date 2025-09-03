@@ -8,7 +8,6 @@ st.write(
   """Choose the fruits you want in your custom Smoothie!
   """
 )
-
 # Input for smoothie name
 name_on_order = st.text_input("Name of Smoothie:")
 st.write("The name of your Smoothie will be:", name_on_order)
