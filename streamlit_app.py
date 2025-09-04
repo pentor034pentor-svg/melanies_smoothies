@@ -45,15 +45,25 @@ if ingredients_list:
         INSERT INTO smoothies.public.orders(ingredients, name_on_order)
         VALUES ('{ingredients_string}', '{name_on_order}')
     """
-
-    # Submit button
-    time_to_insert = st.button('Submit Order')
+  # Submit button
+    time_to_insert = st.button("Submit Order")
     if time_to_insert:
-        session.sql(my_insert_stmt).collect()
-        st.success(f"Your Smoothie is ordered! 🥤 Name: {name_on_order}", icon="✅")
-        # Debug SQL (optional)
-        # st.write(my_insert_stmt)
-    st.stop() 
+      try:
+          session.sql(
+              "INSERT INTO orders (ingredients, name_on_order) VALUES (?, ?)",
+              params=[ingredients_string, name_on_order]
+          ).collect()
+          st.success(f"Your Smoothie is ordered! 🥤 Name: {name_on_order}", icon="✅")
+      except Exception as e:
+          st.error(f"Insert failed: {e}")
+      st.stop()
+    # time_to_insert = st.button('Submit Order')
+    # if time_to_insert:
+    #     session.sql(my_insert_stmt).collect()
+    #     st.success(f"Your Smoothie is ordered! 🥤 Name: {name_on_order}", icon="✅")
+    #     # Debug SQL (optional)
+    #     # st.write(my_insert_stmt)
+    # st.stop() 
 
 
 
