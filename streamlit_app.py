@@ -12,14 +12,15 @@ st.write(
 # Input for smoothie name
 name_on_order = st.text_input("Name of Smoothie:")
 st.write("The name of your Smoothie will be:", name_on_order)
-# st.dataframe(data=my_dataframe,use_container_width = True)
-# st.stop()
+
 
 
 # Snowflake session
 cnx = st.connection("snowflake")
 session = cnx.session()
 my_dataframe = session.table("smoothies.public.fruit_options").select(col('FRUIT_NAME'))
+st.dataframe(data=my_dataframe,use_container_width = True)
+st.stop()
 
 # Convert to Python list for multiselect
 fruit_options = [row["FRUIT_NAME"] for row in my_dataframe.collect()]
